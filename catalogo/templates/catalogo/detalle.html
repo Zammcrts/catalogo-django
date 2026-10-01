@@ -1,0 +1,28 @@
+{% extends "catalogo/base.html" %}
+
+{% block titulo %}{{ cancion.titulo }}{% endblock %}
+
+{% block contenido %}
+<h2>{{ cancion.titulo }}</h2>
+<p><strong>Artista:</strong> {{ cancion.artista }}</p>
+<p><strong>Álbum:</strong> {{ cancion.album|default:"Sin álbum" }}</p>
+<p><strong>Lanzamiento:</strong> {{ cancion.fecha_lanzamiento }}</p>
+<p><strong>Duración:</strong> {{ cancion.duracion }}</p>
+<p><strong>Popularidad:</strong> {{ cancion.popularidad }}</p>
+
+{% with playlists=cancion.playlist.all %}
+<h3>Aparece en {{ playlists|length }} playlist{{ playlists|length|pluralize }}</h3>
+<ul>
+    {% for p in playlists %}
+    <li>
+        <a href="{% url 'catalogo:playlist_detalle' p.pk %}">{{ p.nombre }}</a>
+        ({{ p.genero }}{% if p.subgenero %}, {{ p.subgenero }}{% endif %})
+    </li>
+    {% empty %}
+    <li>Esta canción no está en ninguna playlist.</li>
+    {% endfor %}
+</ul>
+{% endwith %}
+
+<p><a href="{% url 'catalogo:lista' %}">Volver a la lista</a></p>
+{% endblock %}

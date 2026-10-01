@@ -1,0 +1,23 @@
+{% extends "catalogo/base.html" %}
+
+{% block contenido %}
+<h1>{{ playlist.nombre }}</h1>
+<p>Género: {{ playlist.genero }}</p>
+<p>Subgénero: {{ playlist.subgenero }}</p>
+
+<h2>Canciones ({{ canciones|length }})</h2>
+<table>
+    <tr><th>Título</th><th>Artista</th><th>Popularidad</th></tr>
+    {% for c in canciones %}
+    <tr>
+        <td><a href="{% url 'catalogo:detalle' c.pk %}">{{ c.titulo }}</a></td>
+        <td>{{ c.artista }}</td>
+        <td>{{ c.popularidad }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">Esta playlist no tiene canciones.</td></tr>
+    {% endfor %}
+</table>
+
+<p><a href="{% url 'catalogo:lista' %}">← Volver al catálogo</a></p>
+{% endblock %}

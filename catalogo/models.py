@@ -31,3 +31,9 @@ class Cancion(models.Model):
 
     def __str__(self):
         return f"{self.titulo} ({self.artista})"
+        # catalogo/models.py (dentro de la clase Cancion, después de __str__)
+    @property
+    def duracion(self):
+        minutos, segundos = divmod(self.duracion_ms // 1000, 60)
+        return f"{minutos}:{segundos:02d}"
+        

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>{% block titulo %}Catálogo{% endblock %}</title>
+    <style>
+        body { font-family: sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: .4rem; border-bottom: 1px solid #ddd; }
+        a { color: #1a5fb4; }
+    </style>
+</head>
+<body>
+    <h1><a href="{% url 'catalogo:lista' %}">Catálogo de canciones</a></h1>
+    {% block contenido %}{% endblock %}
+</body>
+</html>
