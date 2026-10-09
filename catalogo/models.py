@@ -15,7 +15,7 @@ class Playlist(models.Model):
 class Cancion(models.Model):
     spotify_id = models.CharField(max_length=22, unique=True)
     titulo = models.CharField(max_length=300)
-    artista = models.CharField(max_length=200)
+    artista = models.CharField(max_length=200, db_index=True) #se añadio db_index=True para mejorar la búsqueda por artista
     album = models.CharField(max_length=300, blank=True)
     #genero = models.CharField(max_length=50)
     popularidad = models.PositiveSmallIntegerField(default=0)
